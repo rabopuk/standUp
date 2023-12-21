@@ -1,0 +1,29 @@
+.notification {
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1.2;
+  background: bisque;
+  color: #FFFFFF;
+  border-radius: 16px;
+  padding: 32px;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.notification_show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.notification_success {
+  background: #00992B url('../Img/iconamoon_check-bold.svg') right 32px center/36px no-repeat;
+  padding-right: 76px;
+}
+
+.notification_error {
+  background-color: #900;
+}
