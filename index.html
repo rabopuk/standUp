@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>StandUp Party booking</title>
   <script type="module" src="/main.js"></script>
@@ -31,8 +31,9 @@
       </div>
     </div>
 
-    <button class="event__button event__button_reserve">Забронировать места</button>
-    <button class="event__button event__button_edit">
+    <button class="event__button event__button_reserve event__button_hidden">Забронировать
+      места</button>
+    <button class="event__button event__button_edit event__button_hidden">
       Редактировать бронь
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
         fill="none">
@@ -43,7 +44,7 @@
     </button>
   </section>
 
-  <section class="booking">
+  <section class="booking booking_hidden">
     <div class="booking__container">
       <h2 class="booking__title">Забронируйте место в зале</h2>
 

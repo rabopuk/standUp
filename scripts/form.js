@@ -1,12 +1,15 @@
 import Inputmask from 'inputmask';
 import JustValidate from 'just-validate';
 import { Notification } from './Notification';
+import { sendData } from './api.js';
 
 export const initForm = (
   bookingForm,
   bookingInputFullname,
   bookingInputPhone,
-  bookingInputTicket
+  bookingInputTicket,
+  bookingComediansList,
+  changeSection
 ) => {
   const validate = new JustValidate(bookingForm, {
     errorFieldCssClass: 'booking__input_invalid',
@@ -64,11 +67,16 @@ export const initForm = (
         };
       }
 
-      Notification.getInstance().show(errorMessage.slice(0, -2), false);
+      Notification.getInstance().show(errorMessage.slice(0, -2));
     });
 
-  bookingForm.addEventListener('submit', (e) => {
+  bookingForm.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    if (!validate.isValid) {
+      return;
+    }
+
     const data = { booking: [] };
     const times = new Set();
 
@@ -83,10 +91,35 @@ export const initForm = (
       } else {
         data[field] = value;
       }
-
-      if (times.size !== data.booking.length) {
-        Notification.getInstance().show('Выбраны выступления комиков в одинаковое время', false);
-      }
     });
+
+    if (times.size !== data.booking.length) {
+      Notification.getInstance().show('Выбраны выступления комиков в одинаковое время');
+
+      return;
+    }
+
+    if (!times.size) {
+      Notification.getInstance().show('Не выбран комик и/или время выступления');
+
+      return;
+    }
+
+    const method = bookingForm.getAttribute('method');
+
+    let isSend = false;
+
+    if (method === 'PATCH') {
+      isSend = await sendData(method, data, data.ticketNumber);
+    } else {
+      isSend = await sendData(method, data);
+    }
+
+    if (isSend) {
+      Notification.getInstance().show('Бронь принята', true);
+      changeSection();
+      bookingForm.reset();
+      bookingComediansList.textContent = '';
+    }
   });
 };
