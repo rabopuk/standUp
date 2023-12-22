@@ -136,6 +136,30 @@
   background: url('../Img/gg_qr.svg') right/24px no-repeat;
 }
 
+.booking__client-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+  margin-bottom: 28px;
+}
+
+.booking__client-item {
+  margin: 0;
+}
+
+.booking__title-qr {
+  font-size: 32px;
+  grid-column: 1 / -1;
+  margin-bottom: 24px;
+}
+
+.booking__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+
+}
+
 @media (max-width: 1024px) {
   .booking__container {
     padding: 0 60px;
@@ -183,5 +207,13 @@
     max-width: none;
     margin-right: 0;
     margin-bottom: 8px;
+  }
+
+  .booking__client-info {
+    gap: 8px;
+  }
+
+  .booking__list {
+    gap: 8px;
   }
 }
