@@ -1,6 +1,7 @@
 import { Notification } from "./Notification.js";
 import { getClient, getComedians } from "./api.js";
 import { displayBooking, displayClientInfo } from "./display.js";
+import { showQRController } from "./showQRController.js";
 
 const getTicketNumber = () => {
   const queryString = window.location.search;
@@ -11,7 +12,7 @@ const getTicketNumber = () => {
 
 export const initQrPage = async () => {
   const clientInfo = document.querySelector('.booking__client-info');
-  const performance = document.querySelector('.booking__performance');
+  const bookingPerformance = document.querySelector('.booking__performance');
 
   const ticketNumber = getTicketNumber();
 
@@ -20,7 +21,9 @@ export const initQrPage = async () => {
     displayClientInfo(clientInfo, clientData);
 
     const comediansData = await getComedians(ticketNumber);
-    displayBooking(performance, clientData, comediansData);
+    displayBooking(bookingPerformance, clientData, comediansData);
+
+    showQRController(bookingPerformance);
   } else {
     Notification.getInstance().show('Произошла ошибка, проверьте ссылку');
   }
