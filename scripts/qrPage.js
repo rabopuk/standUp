@@ -1,4 +1,4 @@
-import { Notification } from "./Notification.js";
+import { Notification } from "./Notification";
 import { getClient, getComedians } from "./api.js";
 import { displayBooking, displayClientInfo } from "./display.js";
 import { showQRController } from "./showQRController.js";
