@@ -1,4 +1,4 @@
-import { Notification } from './Notification';
+import { Notification } from './Notification.js';
 
 // const API_URL = 'http://localhost:8080/';
 const API_URL = 'https://absorbing-holy-periwinkle.glitch.me/';

@@ -1,5 +1,5 @@
 import QRCode from "qrcode";
-import { Notification } from "./Notification";
+import { Notification } from "./Notification.js";
 
 const displayQRCode = (data) => {
   let error = false;
